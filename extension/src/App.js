@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { changeColor } from './main';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={changeColor}>
+          Change color
+        </button>
       </header>
     </div>
   );
