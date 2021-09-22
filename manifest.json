@@ -25,5 +25,13 @@
       "48": "/images/logo192.png",
       "128": "/images/logo192.png"
     },
-    "content_security_policy": "script-src 'self' 'sha256-MnwXpRCcLkk0LAXXGTfvvQeiAnGgu86HpxQJfrDy6J8='; object-src 'self';"
+    "content_security_policy": "script-src 'self' 'sha256-MnwXpRCcLkk0LAXXGTfvvQeiAnGgu86HpxQJfrDy6J8='; object-src 'self';",
+    "web_accessible_resources": ["api.js"],
+    "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "match_about_blank": true,
+        "js": ["hello.js"]
+      }
+    ]
   }

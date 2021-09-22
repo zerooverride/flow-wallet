@@ -1,6 +1,19 @@
+/*global chrome*/
+
 import logo from './logo.svg';
 import './App.css';
 import { changeColor } from './main';
+import React, { useEffect, useState } from "react";
+
+// listens for messages from the content script
+// seems we can't get internal messages from the actual api library directly
+// could get external messages but then have to allowlist every site in the extension manifest
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    console.log("in APP.js");
+    sendResponse({ farewell: "goodbye" });
+  }
+);
 
 function App() {
   return (
