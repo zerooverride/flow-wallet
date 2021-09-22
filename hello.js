@@ -12,8 +12,8 @@ s.onload = function() {
 
 
 // Register event to allow dialog between page-wide and extension-wide code
-document.addEventListener('MY_API:hello', function (e) {
-    alert('Hellooooo, ' + e.detail.who);
+document.addEventListener('FlowWalletAPI', function (e) {
+    alert('Running API: ' + e.detail.api);
     //                  ↑ how to pass data
-    chrome.runtime.sendMessage("Hello world");
+    chrome.runtime.sendMessage({api: e.detail.api, params: e.detail.params});
 });

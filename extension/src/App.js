@@ -10,7 +10,11 @@ import React, { useEffect, useState } from "react";
 // could get external messages but then have to allowlist every site in the extension manifest
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    console.log("in APP.js");
+    console.log("in APP.js: ");
+    console.log(request);
+    console.log("api: " + request.api);
+    console.log("params: ");
+    console.log(request.params);
     sendResponse({ farewell: "goodbye" });
   }
 );

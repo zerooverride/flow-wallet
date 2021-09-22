@@ -1,9 +1,19 @@
 (function (exports) {
-    exports.hello = function (who) {
-      document.dispatchEvent(new CustomEvent('MY_API:hello', {
-        detail: {
-          who: who || 'world'
-        }
-      }));
+    exports.get_one_thing = function (one_thing) {
+        document.dispatchEvent(new CustomEvent('FlowWalletAPI', {
+            detail: {
+                api: 'get_one_api',
+                params: one_thing
+            }
+        }));
     };
-  })(window.MY_API = {});
+
+    exports.set_two_things = function (param1, param2) {
+        document.dispatchEvent(new CustomEvent('FlowWalletAPI', {
+            detail: {
+                api: 'set_two_thing',
+                params: [param1, param2],
+            }
+        }));
+    };
+})(window.flow_wallet = {});
