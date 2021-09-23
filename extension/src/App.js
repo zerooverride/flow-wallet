@@ -3,7 +3,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { changeColor } from './main';
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 // listens for messages from the content script
 // seems we can't get internal messages from the actual api library directly
