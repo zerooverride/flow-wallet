@@ -1,28 +1,20 @@
 (function (exports) {
-
-    exports.get_one_thing = function (one_thing) {
-        document.dispatchEvent(new CustomEvent('FlowWalletAPI', {
-            detail: {
-                api: 'get_one_api',
-                params: one_thing
-            }
-        }));
-    };
-
-    exports.set_two_things = function (param1, param2) {
+    // if we expose a named function here we still have to pass it as a string into the extension
+    // small tradeoff in dev experience
+    exports.request = function (api_name, ...api_params) {
         var responsePromise = new Promise((resolve, reject) => {
             function handleEvent(event) {
-                if (event.detail.api === 'set_two_things') {
+                if (event.detail.api === api_name) {
                     document.removeEventListener('walletResponse', handleEvent);
-                    resolve(event);
+                    resolve(event); // if event was successfull, otherwise should probably reject
                 }
             }
             document.addEventListener('walletResponse', handleEvent);
         });
         document.dispatchEvent(new CustomEvent('FlowWalletAPI', {
             detail: {
-                api: 'set_two_things',
-                params: [param1, param2],
+                api: api_name,
+                params: api_params,
             }
         }));
         return responsePromise;
